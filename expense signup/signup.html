@@ -17,29 +17,30 @@
                 <div class="card-body p-4 p-md-5">
                   <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Sign Up</h3>
       
-                  <form onsubmit="saveToCloud(e)" method="POST" id="my-form" class="px-md-2">
+                  <form onsubmit="signup(event)" method="POST" id="my-form" class="px-md-2">
                     <div class="msg"></div>
 
       
                     <div class="form-outline mb-4">
-                      <input type="name" id="name" class="form-control" />
+                      <input type="name" id="name" class="form-control" required/>
                       <label class="form-label" for="form3Example1q">Name</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input type="email" id="email" class="form-control" />
+                        <input type="email" id="email" class="form-control" required/>
                         <label class="form-label" for="form3Example1q">Email</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input type="password" id="password" class="form-control" />
+                        <input type="password" id="password" class="form-control" required/>
                         <label class="form-label" for="form3Example1q">Password</label>
                     </div>
       
       
-                    <button type="submit" class="btn btn-success btn-lg mb-1">Submit</button>
+                    <button type="submit" class="btn btn-success btn-md mb-1">Submit</button>
       
                   </form>
+                  <a href="../Login/login.html" class="btn btn-primary btn-sm mb-1"> Existing User- Login </a>
       
                 </div>
               </div>

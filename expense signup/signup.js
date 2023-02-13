@@ -1,60 +1,38 @@
-const myForm = document.getElementById('my-form');
+async function signup(e){
 
-const msg = document.getElementById('msg');
-
-function saveToCloud(e){
-
-    const nameInput= document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('email');
-
-
-    if(nameInput.value === '' || emailInput.value === '' || passwordInput.value === ''){
-
-        msg.classList.add('error');
-        msg.innerHTML = 'Please enter all fields';
-        setTimeout(() => msg.remove(), 3000);
-
-    }
-
-    else{
+    try{
 
         e.preventDefault();
+        console.log(e.target.email.value);
 
             const userDetails = {
-            name : nameInput.value,
-            email: emailInput.value,
-            password: passwordInput.value
+            name : e.target.name.value,
+            email: e.target.email.value,
+            password: e.target.password.value
         
             }
 
             console.log(userDetails)
         
-        
-        
-            let serilized_Obj = JSON.stringify(userDetails);
-        
+
+            const response = await axios.post("http://localhost:3000/user/signup",userDetails)
             
+            if(response.status === 201){
+                console.log(response.status);
+            }
 
-            axios.post("http://localhost:3000/user/signup",userDetails)
-            .then((response) => {
+            else{
+                throw new Error('Failed to login');
+            }
+            
+            
+        }
 
-                console.log(response);
-            })
-            .catch(err => {
+        catch(err){
 
-                document.body.innerHTML = document.body.innerHTML + "<h4> Something went wrong </h4>"
+                document.body.innerHTML = document.body.innerHTML + `<div style='color:red';> ${err} </h4>`
                 console.log(err)
-            })
-
-            nameInput.value ='';
-            emailInput.value= '';
-            passwordInput.value ='';
-
-            console.log(response);
-
-    }
-
+            }
 
     
   
